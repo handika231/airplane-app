@@ -1,6 +1,7 @@
 // @CupertinoAutoRouter
 // @AdaptiveAutoRouter
 // @CustomAutoRouter
+import 'package:airplane_app/presentation/page/bonus_page.dart';
 import 'package:airplane_app/presentation/page/get_started_page.dart';
 import 'package:airplane_app/presentation/page/home_page.dart';
 import 'package:auto_route/annotations.dart';
@@ -13,6 +14,7 @@ import '../page/sign_up_page.dart';
     AutoRoute(page: GetStartedPage, initial: true),
     AutoRoute(page: HomePage),
     AutoRoute(page: SignUpPage),
+    AutoRoute(page: BonusPage),
   ],
 )
 class $AppRouter {}

@@ -1,5 +1,7 @@
 import 'package:airplane_app/common/style.dart';
+import 'package:airplane_app/presentation/routes/app_route.gr.dart';
 import 'package:airplane_app/presentation/widgets/custom_button_widget.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
 class SignUpPage extends StatelessWidget {
@@ -52,7 +54,11 @@ class SignUpPage extends StatelessWidget {
                       height: 55,
                       child: CustomButtonWidget(
                         title: 'Get Started',
-                        onPressed: () {},
+                        onPressed: () {
+                          AutoRouter.of(context).push(
+                            const BonusRoute(),
+                          );
+                        },
                       ),
                     )
                   ],
