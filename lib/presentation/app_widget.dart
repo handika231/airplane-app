@@ -13,10 +13,10 @@ class AppWidget extends StatelessWidget {
       builder: (context, child) => ResponsiveWrapper.builder(
         child,
         maxWidth: 1200,
-        minWidth: 450,
+        minWidth: 400,
         defaultScale: true,
         breakpoints: [
-          const ResponsiveBreakpoint.resize(450, name: MOBILE),
+          const ResponsiveBreakpoint.resize(400, name: MOBILE),
           const ResponsiveBreakpoint.autoScale(800, name: MOBILE),
           const ResponsiveBreakpoint.autoScale(800, name: TABLET),
           const ResponsiveBreakpoint.autoScale(1000, name: TABLET),

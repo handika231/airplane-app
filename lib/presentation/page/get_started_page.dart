@@ -1,4 +1,6 @@
 import 'package:airplane_app/common/style.dart';
+import 'package:airplane_app/presentation/routes/app_route.gr.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
 import '../widgets/custom_button_widget.dart';
@@ -17,13 +19,13 @@ class GetStartedPage extends StatelessWidget {
             height: double.infinity,
             fit: BoxFit.cover,
           ),
-          itemContent()
+          itemContent(context)
         ],
       ),
     );
   }
 
-  Widget itemContent() {
+  Widget itemContent(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 50),
       child: Center(
@@ -55,7 +57,11 @@ class GetStartedPage extends StatelessWidget {
               width: 220,
               height: 50,
               child: CustomButtonWidget(
-                onPressed: () {},
+                onPressed: () {
+                  AutoRouter.of(context).push(
+                    SignUpRoute(),
+                  );
+                },
                 title: 'Get Started',
               ),
             )
