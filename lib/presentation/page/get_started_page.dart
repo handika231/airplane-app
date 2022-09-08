@@ -59,7 +59,7 @@ class GetStartedPage extends StatelessWidget {
               child: CustomButtonWidget(
                 onPressed: () {
                   AutoRouter.of(context).push(
-                    SignUpRoute(),
+                    const HomeRoute(),
                   );
                 },
                 title: 'Get Started',
