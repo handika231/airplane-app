@@ -89,7 +89,6 @@ class HomePage extends StatelessWidget {
   _popularDestinationItem(PopularContent listOfContent) {
     return Container(
       decoration: BoxDecoration(
-        color: Colors.lightBlue,
         borderRadius: BorderRadius.circular(18),
       ),
       margin: const EdgeInsets.only(right: 24),
@@ -97,12 +96,69 @@ class HomePage extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Image.asset(
-            listOfContent.imageUrl.toString(),
-            width: 180,
-            height: 220,
-            fit: BoxFit.cover,
+          ClipRRect(
+            borderRadius: BorderRadius.circular(18),
+            child: Stack(
+              children: [
+                Image.asset(
+                  listOfContent.imageUrl.toString(),
+                  width: 180,
+                  height: 220,
+                  fit: BoxFit.cover,
+                ),
+                Positioned(
+                  top: 0,
+                  right: 0,
+                  child: Container(
+                    width: 55,
+                    height: 30,
+                    decoration: const BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(36),
+                      ),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Icon(
+                          Icons.star,
+                          color: Colors.orange,
+                        ),
+                        Text(
+                          '${listOfContent.rating}',
+                          style: blackTextStyle.copyWith(
+                            fontWeight: medium,
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                )
+              ],
+            ),
           ),
+          const SizedBox(
+            height: 20,
+          ),
+          Flexible(
+            child: Text(
+              listOfContent.title.toString(),
+              style: blackTextStyle.copyWith(
+                fontSize: 18,
+                fontWeight: medium,
+              ),
+            ),
+          ),
+          const SizedBox(
+            height: 4,
+          ),
+          Flexible(
+            child: Text(
+              listOfContent.subTitle.toString(),
+              style: greyTextStyle.copyWith(fontWeight: light),
+            ),
+          )
         ],
       ),
     );
