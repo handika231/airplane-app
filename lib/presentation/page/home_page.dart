@@ -1,4 +1,5 @@
 import 'package:airplane_app/common/style.dart';
+import 'package:airplane_app/domain/models/destination_model.dart';
 import 'package:airplane_app/domain/models/popular_content.dart';
 import 'package:flutter/material.dart';
 
@@ -8,11 +9,13 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: kWhiteColor,
       body: SafeArea(
         child: ListView(
           children: [
             _headerContent(),
             _popularDestinationContent(),
+            _destinationTile(),
           ],
         ),
       ),
@@ -159,6 +162,92 @@ class HomePage extends StatelessWidget {
               style: greyTextStyle.copyWith(fontWeight: light),
             ),
           )
+        ],
+      ),
+    );
+  }
+
+  Widget _destinationTile() {
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: 24),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'New This Year',
+            style: blackTextStyle.copyWith(
+              fontSize: 18,
+              fontWeight: semiBold,
+            ),
+          ),
+          const SizedBox(
+            height: 16,
+          ),
+          ListView.builder(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            itemCount: listOfDestinations.length,
+            itemBuilder: (BuildContext context, int index) {
+              return Padding(
+                padding: const EdgeInsets.only(
+                  bottom: 16,
+                ),
+                child: Row(
+                  children: [
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(24),
+                      child: Image.asset(
+                        listOfDestinations[index].imageUrl.toString(),
+                        height: 100,
+                        width: 100,
+                        fit: BoxFit.contain,
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 16,
+                    ),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            listOfDestinations[index].name.toString(),
+                            style: blackTextStyle.copyWith(
+                              fontWeight: medium,
+                              fontSize: 18,
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 4,
+                          ),
+                          Text(
+                            listOfDestinations[index].location.toString(),
+                            style: greyTextStyle.copyWith(
+                              fontWeight: light,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Row(
+                      children: [
+                        const Icon(
+                          Icons.star,
+                          color: Colors.orange,
+                        ),
+                        Text(
+                          listOfDestinations[index].rating.toString(),
+                          style: blackTextStyle.copyWith(
+                            fontWeight: medium,
+                          ),
+                        )
+                      ],
+                    ),
+                  ],
+                ),
+              );
+            },
+          ),
         ],
       ),
     );
