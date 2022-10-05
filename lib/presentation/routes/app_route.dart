@@ -2,6 +2,7 @@
 // @AdaptiveAutoRouter
 // @CustomAutoRouter
 import 'package:airplane_app/presentation/page/bonus_page.dart';
+import 'package:airplane_app/presentation/page/choose_page.dart';
 import 'package:airplane_app/presentation/page/get_started_page.dart';
 import 'package:airplane_app/presentation/page/home_page.dart';
 import 'package:auto_route/annotations.dart';
@@ -17,6 +18,7 @@ import '../page/sign_up_page.dart';
     AutoRoute(page: SignUpPage),
     AutoRoute(page: BonusPage),
     AutoRoute(page: DetailPage),
+    AutoRoute(page: ChoosePage),
   ],
 )
 class $AppRouter {}

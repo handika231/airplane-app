@@ -1,5 +1,7 @@
 import 'package:airplane_app/common/style.dart';
 import 'package:airplane_app/domain/models/popular_content.dart';
+import 'package:airplane_app/presentation/routes/app_route.gr.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
 import '../widgets/photo_item.dart';
@@ -168,14 +170,123 @@ Singaraja serta letaknya yang dekat dengan Kebun Raya Eka Karya menjadikan tempa
                             PhotoItem(image: 'assets/image_photo3.png'),
                           ],
                         ),
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      Text(
+                        'Interests',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: semiBold,
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Flex(
+                        direction: Axis.horizontal,
+                        children: const [
+                          InterestItem(text: 'Kids Park'),
+                          InterestItem(text: 'Honor Bridge'),
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Flex(
+                        direction: Axis.horizontal,
+                        children: const [
+                          InterestItem(text: 'City Museum'),
+                          InterestItem(text: 'Central Mall'),
+                        ],
                       )
                     ],
                   ),
                 ),
               ],
             ),
+            Container(
+              margin: const EdgeInsets.symmetric(
+                horizontal: 24,
+                vertical: 30,
+              ),
+              width: double.infinity,
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'IDR 2.500.000',
+                          style: blackTextStyle.copyWith(
+                            fontSize: 18,
+                            fontWeight: medium,
+                          ),
+                        ),
+                        Text(
+                          'per orang',
+                          style: blackTextStyle.copyWith(
+                            fontSize: 14,
+                            fontWeight: light,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Expanded(
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: kPrimaryColor,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(17),
+                        ),
+                        minimumSize: const Size(88, 50),
+                      ),
+                      child: Text(
+                        'Book Now',
+                        style: whiteTextStyle.copyWith(
+                          fontSize: 18,
+                          fontWeight: medium,
+                        ),
+                      ),
+                      onPressed: () {
+                        AutoRouter.of(context).push(const ChooseRoute());
+                      },
+                    ),
+                  ),
+                ],
+              ),
+            )
           ],
         ),
+      ),
+    );
+  }
+}
+
+class InterestItem extends StatelessWidget {
+  final String text;
+  const InterestItem({Key? key, required this.text}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: Row(
+        children: [
+          Image.asset(
+            'assets/icon_check.png',
+            width: 16,
+          ),
+          const SizedBox(
+            width: 6,
+          ),
+          Text(
+            text,
+            style: blackTextStyle,
+          )
+        ],
       ),
     );
   }
