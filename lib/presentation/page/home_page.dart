@@ -1,7 +1,10 @@
 import 'package:airplane_app/common/style.dart';
 import 'package:airplane_app/domain/models/destination_model.dart';
 import 'package:airplane_app/domain/models/popular_content.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+
+import '../routes/app_route.gr.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -83,86 +86,94 @@ class HomePage extends StatelessWidget {
         scrollDirection: Axis.horizontal,
         itemCount: listOfContent.length,
         itemBuilder: (BuildContext context, int index) {
-          return _popularDestinationItem(listOfContent[index]);
+          return _popularDestinationItem(listOfContent[index], context);
         },
       ),
     );
   }
 
-  _popularDestinationItem(PopularContent listOfContent) {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(18),
-      ),
-      margin: const EdgeInsets.only(right: 24),
-      padding: const EdgeInsets.fromLTRB(10, 10, 10, 20),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(18),
-            child: Stack(
-              children: [
-                Image.asset(
-                  listOfContent.imageUrl.toString(),
-                  width: 180,
-                  height: 220,
-                  fit: BoxFit.cover,
-                ),
-                Positioned(
-                  top: 0,
-                  right: 0,
-                  child: Container(
-                    width: 55,
-                    height: 30,
-                    decoration: const BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(36),
-                      ),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const Icon(
-                          Icons.star,
-                          color: Colors.orange,
-                        ),
-                        Text(
-                          '${listOfContent.rating}',
-                          style: blackTextStyle.copyWith(
-                            fontWeight: medium,
-                          ),
-                        )
-                      ],
+  _popularDestinationItem(PopularContent listOfContent, BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        AutoRouter.of(context).push(DetailRoute(popularContent: listOfContent));
+      },
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(18),
+        ),
+        margin: const EdgeInsets.only(right: 24),
+        padding: const EdgeInsets.fromLTRB(10, 10, 10, 20),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            ClipRRect(
+              borderRadius: BorderRadius.circular(18),
+              child: Stack(
+                children: [
+                  Hero(
+                    tag: 'background-${listOfContent.imageUrl}',
+                    child: Image.asset(
+                      listOfContent.imageUrl.toString(),
+                      width: 180,
+                      height: 220,
+                      fit: BoxFit.cover,
                     ),
                   ),
-                )
-              ],
-            ),
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          Flexible(
-            child: Text(
-              listOfContent.title.toString(),
-              style: blackTextStyle.copyWith(
-                fontSize: 18,
-                fontWeight: medium,
+                  Positioned(
+                    top: 0,
+                    right: 0,
+                    child: Container(
+                      width: 55,
+                      height: 30,
+                      decoration: const BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(36),
+                        ),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Icon(
+                            Icons.star,
+                            color: Colors.orange,
+                          ),
+                          Text(
+                            '${listOfContent.rating}',
+                            style: blackTextStyle.copyWith(
+                              fontWeight: medium,
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  )
+                ],
               ),
             ),
-          ),
-          const SizedBox(
-            height: 4,
-          ),
-          Flexible(
-            child: Text(
-              listOfContent.subTitle.toString(),
-              style: greyTextStyle.copyWith(fontWeight: light),
+            const SizedBox(
+              height: 20,
             ),
-          )
-        ],
+            Flexible(
+              child: Text(
+                listOfContent.title.toString(),
+                style: blackTextStyle.copyWith(
+                  fontSize: 18,
+                  fontWeight: medium,
+                ),
+              ),
+            ),
+            const SizedBox(
+              height: 4,
+            ),
+            Flexible(
+              child: Text(
+                listOfContent.subTitle.toString(),
+                style: greyTextStyle.copyWith(fontWeight: light),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

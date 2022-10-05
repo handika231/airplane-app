@@ -6,6 +6,7 @@ import 'package:airplane_app/presentation/page/get_started_page.dart';
 import 'package:airplane_app/presentation/page/home_page.dart';
 import 'package:auto_route/annotations.dart';
 
+import '../page/detail_page.dart';
 import '../page/sign_up_page.dart';
 
 @MaterialAutoRouter(
@@ -15,6 +16,7 @@ import '../page/sign_up_page.dart';
     AutoRoute(page: HomePage),
     AutoRoute(page: SignUpPage),
     AutoRoute(page: BonusPage),
+    AutoRoute(page: DetailPage),
   ],
 )
 class $AppRouter {}
