@@ -16,6 +16,7 @@ class ChoosePage extends StatelessWidget {
             children: [
               _headerContent(),
               _seatItem(),
+              _footerContent(),
             ],
           ),
         ),
@@ -262,7 +263,71 @@ Widget _seatItem() {
             )
           ],
         ),
+        const SizedBox(
+          height: 30,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              'Your Seat',
+              style: greyTextStyle.copyWith(fontWeight: light),
+            ),
+            Text(
+              'A1, B3',
+              style: blackTextStyle.copyWith(fontSize: 16, fontWeight: medium),
+            ),
+          ],
+        ),
+        const SizedBox(
+          height: 16,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              'Total',
+              style: greyTextStyle.copyWith(fontWeight: light),
+            ),
+            Text(
+              'IDR 540.000.000',
+              style: purpleTextStyle.copyWith(
+                fontSize: 16,
+                fontWeight: semiBold,
+              ),
+            ),
+          ],
+        ),
       ],
+    ),
+  );
+}
+
+Widget _footerContent() {
+  return Container(
+    margin: const EdgeInsets.symmetric(
+      horizontal: 24,
+      vertical: 30,
+    ),
+    width: double.infinity,
+    height: 55,
+    child: TextButton(
+      onPressed: () {},
+      style: TextButton.styleFrom(
+        backgroundColor: kPrimaryColor,
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(
+            Radius.circular(17),
+          ),
+        ),
+      ),
+      child: Text(
+        'Continue to Checkout',
+        style: whiteTextStyle.copyWith(
+          fontSize: 18,
+          fontWeight: semiBold,
+        ),
+      ),
     ),
   );
 }
