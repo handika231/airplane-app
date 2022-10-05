@@ -1,4 +1,6 @@
 import 'package:airplane_app/common/style.dart';
+import 'package:airplane_app/presentation/routes/app_route.gr.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
 import '../widgets/item_detail_widget.dart';
@@ -17,7 +19,7 @@ class CheckoutPage extends StatelessWidget {
               _headerContent(),
               _content(),
               _paymentDetail(),
-              _footerContent(),
+              _footerContent(context),
             ],
           ),
         ),
@@ -26,27 +28,32 @@ class CheckoutPage extends StatelessWidget {
   }
 }
 
-Widget _footerContent() {
+Widget _footerContent(BuildContext context) {
   return Column(
     children: [
-      Container(
-        height: 55,
-        width: double.infinity,
-        decoration: BoxDecoration(
-          color: kPrimaryColor,
-          borderRadius: BorderRadius.circular(17),
-        ),
-        margin: const EdgeInsets.only(
-          left: 24,
-          right: 24,
-          bottom: 30,
-        ),
-        child: Center(
-          child: Text(
-            'Pay Now',
-            style: whiteTextStyle.copyWith(
-              fontSize: 18,
-              fontWeight: medium,
+      GestureDetector(
+        onTap: () {
+          AutoRouter.of(context).push(const SuccessCheckoutRoute());
+        },
+        child: Container(
+          height: 55,
+          width: double.infinity,
+          decoration: BoxDecoration(
+            color: kPrimaryColor,
+            borderRadius: BorderRadius.circular(17),
+          ),
+          margin: const EdgeInsets.only(
+            left: 24,
+            right: 24,
+            bottom: 30,
+          ),
+          child: Center(
+            child: Text(
+              'Pay Now',
+              style: whiteTextStyle.copyWith(
+                fontSize: 18,
+                fontWeight: medium,
+              ),
             ),
           ),
         ),
