@@ -1,4 +1,6 @@
 import 'package:airplane_app/common/style.dart';
+import 'package:airplane_app/presentation/routes/app_route.gr.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
 import '../widgets/seat_widget.dart';
@@ -16,7 +18,7 @@ class ChoosePage extends StatelessWidget {
             children: [
               _headerContent(),
               _seatItem(),
-              _footerContent(),
+              _footerContent(context),
             ],
           ),
         ),
@@ -303,7 +305,7 @@ Widget _seatItem() {
   );
 }
 
-Widget _footerContent() {
+Widget _footerContent(BuildContext context) {
   return Container(
     margin: const EdgeInsets.symmetric(
       horizontal: 24,
@@ -312,7 +314,9 @@ Widget _footerContent() {
     width: double.infinity,
     height: 55,
     child: TextButton(
-      onPressed: () {},
+      onPressed: () {
+        AutoRouter.of(context).push(const CheckoutRoute());
+      },
       style: TextButton.styleFrom(
         backgroundColor: kPrimaryColor,
         shape: const RoundedRectangleBorder(
