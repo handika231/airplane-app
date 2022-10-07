@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
 import '../../common/style.dart';
@@ -44,7 +45,9 @@ class SuccessCheckoutPage extends StatelessWidget {
               width: 220,
               height: 50,
               child: TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  AutoRouter.of(context).popUntilRoot();
+                },
                 style: TextButton.styleFrom(
                   backgroundColor: kPrimaryColor,
                   shape: RoundedRectangleBorder(

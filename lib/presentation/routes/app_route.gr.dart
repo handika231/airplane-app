@@ -32,7 +32,7 @@ class AppRouter extends _i9.RootStackRouter {
   final Map<String, _i9.PageFactory> pagesMap = {
     GetStartedRoute.name: (routeData) {
       return _i9.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i1.GetStartedPage());
+          routeData: routeData, child: _i1.GetStartedPage());
     },
     HomeRoute.name: (routeData) {
       return _i9.MaterialPageX<dynamic>(

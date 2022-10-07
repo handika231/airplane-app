@@ -1,12 +1,16 @@
 import 'package:airplane_app/common/style.dart';
-import 'package:airplane_app/presentation/routes/app_route.gr.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
+import '../routes/app_route.gr.dart';
 import '../widgets/custom_button_widget.dart';
 
 class GetStartedPage extends StatelessWidget {
-  const GetStartedPage({super.key});
+  GetStartedPage({super.key});
+  final FirebaseAuth auth = FirebaseAuth.instance;
+  final FirebaseFirestore data = FirebaseFirestore.instance;
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +61,7 @@ class GetStartedPage extends StatelessWidget {
               width: 220,
               height: 50,
               child: CustomButtonWidget(
-                onPressed: () {
+                onPressed: () async {
                   AutoRouter.of(context).push(
                     const HomeRoute(),
                   );
