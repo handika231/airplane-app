@@ -6,6 +6,7 @@ import 'package:airplane_app/presentation/page/checkout_page.dart';
 import 'package:airplane_app/presentation/page/choose_page.dart';
 import 'package:airplane_app/presentation/page/get_started_page.dart';
 import 'package:airplane_app/presentation/page/home_page.dart';
+import 'package:airplane_app/presentation/page/sign_out_page.dart';
 import 'package:airplane_app/presentation/page/success_checkout_page.dart';
 import 'package:auto_route/annotations.dart';
 
@@ -23,6 +24,7 @@ import '../page/sign_up_page.dart';
     AutoRoute(page: ChoosePage),
     AutoRoute(page: CheckoutPage),
     AutoRoute(page: SuccessCheckoutPage),
+    AutoRoute(page: SignOutPage),
   ],
 )
 class $AppRouter {}
