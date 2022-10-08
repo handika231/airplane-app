@@ -44,39 +44,39 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyDGIuoW33CaKrNrDdFnXQwkJc5j2hhqs0Y',
-    appId: '1:255946375029:web:293ace9f891c0d8015dd3c',
-    messagingSenderId: '255946375029',
-    projectId: 'airplane-bb6f1',
-    authDomain: 'airplane-bb6f1.firebaseapp.com',
-    storageBucket: 'airplane-bb6f1.appspot.com',
+    apiKey: 'AIzaSyCPNuaJ0FpjqsdBPomMOcfBgMrXZnJNXKI',
+    appId: '1:524233486261:web:42df5ba759c42e159373fc',
+    messagingSenderId: '524233486261',
+    projectId: 'latihan-4ee2a',
+    authDomain: 'latihan-4ee2a.firebaseapp.com',
+    storageBucket: 'latihan-4ee2a.appspot.com',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyCJA1k3VHI29_T_asukSHEBLJVgRi-jxyI',
-    appId: '1:255946375029:android:35fa763923fe87fe15dd3c',
-    messagingSenderId: '255946375029',
-    projectId: 'airplane-bb6f1',
-    storageBucket: 'airplane-bb6f1.appspot.com',
+    apiKey: 'AIzaSyArftQf6N1g5sBcjW-NqhKxjnV_ijQFqB8',
+    appId: '1:524233486261:android:36830a85bc2764d99373fc',
+    messagingSenderId: '524233486261',
+    projectId: 'latihan-4ee2a',
+    storageBucket: 'latihan-4ee2a.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyCyY4W8W5Ye4kkzHRMO8TDR01J5SsZj3tM',
-    appId: '1:255946375029:ios:186747549d64b63015dd3c',
-    messagingSenderId: '255946375029',
-    projectId: 'airplane-bb6f1',
-    storageBucket: 'airplane-bb6f1.appspot.com',
-    iosClientId: '255946375029-m2futih72nvnjg8kue24rq6t0t1ruheu.apps.googleusercontent.com',
+    apiKey: 'AIzaSyCEm6kR1eBXH2NJu07fRiWUbr8M6Ua-CCw',
+    appId: '1:524233486261:ios:b130633fdd35b2889373fc',
+    messagingSenderId: '524233486261',
+    projectId: 'latihan-4ee2a',
+    storageBucket: 'latihan-4ee2a.appspot.com',
+    iosClientId: '524233486261-pf7dsi219ua2285ujsha74ntuo50evfc.apps.googleusercontent.com',
     iosBundleId: 'com.example.airplaneApp',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyCyY4W8W5Ye4kkzHRMO8TDR01J5SsZj3tM',
-    appId: '1:255946375029:ios:7d9571d7e01ed5fd15dd3c',
-    messagingSenderId: '255946375029',
-    projectId: 'airplane-bb6f1',
-    storageBucket: 'airplane-bb6f1.appspot.com',
-    iosClientId: '255946375029-n1f0l2s6tnpkmq66pc5h03ftmqm7tors.apps.googleusercontent.com',
-    iosBundleId: 'com.example.app',
+    apiKey: 'AIzaSyCEm6kR1eBXH2NJu07fRiWUbr8M6Ua-CCw',
+    appId: '1:524233486261:ios:ed40ac83bb34cfe49373fc',
+    messagingSenderId: '524233486261',
+    projectId: 'latihan-4ee2a',
+    storageBucket: 'latihan-4ee2a.appspot.com',
+    iosClientId: '524233486261-8ieglv0pfi7chm2pdsrskqi44n262m3i.apps.googleusercontent.com',
+    iosBundleId: 'com.package.airplane',
   );
 }
