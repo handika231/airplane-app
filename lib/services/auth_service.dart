@@ -29,4 +29,8 @@ class AuthService {
       throw e.toString();
     }
   }
+
+  Future signOut() async {
+    await auth.signOut();
+  }
 }

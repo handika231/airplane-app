@@ -16,7 +16,7 @@ class HomePage extends StatelessWidget {
       body: SafeArea(
         child: ListView(
           children: [
-            _headerContent(),
+            _headerContent(context),
             _popularDestinationContent(),
             _destinationTile(),
           ],
@@ -25,7 +25,7 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  _headerContent() {
+  _headerContent(context) {
     return Container(
       margin: const EdgeInsets.only(
         left: 24,
@@ -61,11 +61,16 @@ class HomePage extends StatelessWidget {
               ],
             ),
           ),
-          const Flexible(
-            child: CircleAvatar(
-              radius: 30,
-              backgroundImage: AssetImage(
-                'assets/image_profile.png',
+          Flexible(
+            child: GestureDetector(
+              onTap: () {
+                AutoRouter.of(context).push(const SignOutRoute());
+              },
+              child: const CircleAvatar(
+                radius: 30,
+                backgroundImage: AssetImage(
+                  'assets/image_profile.png',
+                ),
               ),
             ),
           )
