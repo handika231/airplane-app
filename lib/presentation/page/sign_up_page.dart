@@ -1,13 +1,19 @@
 import 'package:airplane_app/common/style.dart';
+import 'package:airplane_app/cubit/auth_cubit.dart';
 import 'package:airplane_app/presentation/routes/app_route.gr.dart';
 import 'package:airplane_app/presentation/widgets/custom_button_widget.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SignUpPage extends StatelessWidget {
   SignUpPage({super.key});
 //create key form
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController hobbyController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,33 +39,59 @@ class SignUpPage extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    fullNameForm(),
+                    fullNameForm(nameController),
                     const SizedBox(
                       height: 20,
                     ),
-                    emailForm(),
+                    emailForm(emailController),
                     const SizedBox(
                       height: 20,
                     ),
-                    passwordForm(),
+                    passwordForm(passwordController),
                     const SizedBox(
                       height: 20,
                     ),
-                    bodyForm(),
+                    hobbyForm(hobbyController),
                     const SizedBox(
                       height: 30,
                     ),
-                    SizedBox(
-                      width: double.infinity,
-                      height: 55,
-                      child: CustomButtonWidget(
-                        title: 'Get Started',
-                        onPressed: () {
-                          AutoRouter.of(context).push(
-                            const BonusRoute(),
+                    BlocConsumer<AuthCubit, AuthState>(
+                      listener: (context, state) {
+                        if (state is AuthFailure) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text(state.error),
+                            ),
                           );
-                        },
-                      ),
+                        } else {
+                          AutoRouter.of(context)
+                              .replaceAll([const HomeRoute()]);
+                        }
+                      },
+                      builder: (context, state) {
+                        if (state is AuthLoading) {
+                          return const Center(
+                            child: CircularProgressIndicator(),
+                          );
+                        }
+                        return SizedBox(
+                          width: double.infinity,
+                          height: 55,
+                          child: CustomButtonWidget(
+                            title: 'Get Started',
+                            onPressed: () {
+                              if (formKey.currentState!.validate()) {
+                                context.read<AuthCubit>().signUp(
+                                      name: nameController.text,
+                                      email: emailController.text,
+                                      password: passwordController.text,
+                                      hobby: hobbyController.text,
+                                    );
+                              }
+                            },
+                          ),
+                        );
+                      },
                     )
                   ],
                 ),
@@ -83,8 +115,9 @@ class SignUpPage extends StatelessWidget {
     );
   }
 
-  bodyForm() {
+  hobbyForm(TextEditingController controller) {
     return TextFormField(
+      controller: controller,
       textInputAction: TextInputAction.done,
       keyboardType: TextInputType.name,
       validator: (value) => value!.isEmpty ? 'Please fill your hobby' : null,
@@ -97,8 +130,9 @@ class SignUpPage extends StatelessWidget {
     );
   }
 
-  passwordForm() {
+  passwordForm(TextEditingController controller) {
     return TextFormField(
+      controller: controller,
       textInputAction: TextInputAction.next,
       keyboardType: TextInputType.visiblePassword,
       obscureText: true,
@@ -112,8 +146,9 @@ class SignUpPage extends StatelessWidget {
     );
   }
 
-  emailForm() {
+  emailForm(TextEditingController controller) {
     return TextFormField(
+      controller: controller,
       textInputAction: TextInputAction.next,
       keyboardType: TextInputType.emailAddress,
       validator: (value) => value!.isEmpty ? 'Please fill your email' : null,
@@ -126,8 +161,9 @@ class SignUpPage extends StatelessWidget {
     );
   }
 
-  fullNameForm() {
+  fullNameForm(TextEditingController controller) {
     return TextFormField(
+      controller: controller,
       textInputAction: TextInputAction.next,
       keyboardType: TextInputType.name,
       validator: (value) => value!.isEmpty ? 'Please fill your name' : null,
