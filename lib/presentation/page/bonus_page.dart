@@ -1,6 +1,8 @@
 import 'package:airplane_app/common/style.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
+import '../routes/app_route.gr.dart';
 import '../widgets/custom_button_widget.dart';
 
 class BonusPage extends StatelessWidget {
@@ -42,7 +44,9 @@ class BonusPage extends StatelessWidget {
               width: 220,
               height: 55,
               child: CustomButtonWidget(
-                onPressed: () {},
+                onPressed: () {
+                  AutoRouter.of(context).replaceAll([const HomeRoute()]);
+                },
                 title: 'Start Fly Now',
               ),
             ),

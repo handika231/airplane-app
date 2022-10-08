@@ -1,6 +1,5 @@
 import 'package:airplane_app/common/style.dart';
 import 'package:auto_route/auto_route.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -15,16 +14,15 @@ class GetStartedPage extends StatefulWidget {
 }
 
 class _GetStartedPageState extends State<GetStartedPage> {
-  final FirebaseAuth auth = FirebaseAuth.instance;
-
-  final FirebaseFirestore data = FirebaseFirestore.instance;
-
+  FirebaseAuth auth = FirebaseAuth.instance;
   @override
   void initState() {
     super.initState();
     auth.authStateChanges().listen((event) {
       if (event != null) {
-        context.router.replace(const HomeRoute());
+        if (mounted) {
+          context.router.replace(const HomeRoute());
+        }
       }
     });
   }
@@ -80,7 +78,7 @@ class _GetStartedPageState extends State<GetStartedPage> {
               child: CustomButtonWidget(
                 onPressed: () async {
                   AutoRouter.of(context).push(
-                    SignUpRoute(),
+                    const SignUpRoute(),
                   );
                 },
                 title: 'Get Started',

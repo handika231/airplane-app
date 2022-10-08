@@ -6,14 +6,49 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class SignUpPage extends StatelessWidget {
-  SignUpPage({super.key});
+class SignUpPage extends StatefulWidget {
+  const SignUpPage({super.key});
+
+  @override
+  State<SignUpPage> createState() => _SignUpPageState();
+}
+
+class _SignUpPageState extends State<SignUpPage> {
 //create key form
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  final TextEditingController nameController = TextEditingController();
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
-  final TextEditingController hobbyController = TextEditingController();
+
+  late TextEditingController nameController;
+
+  late TextEditingController emailController;
+
+  late TextEditingController passwordController;
+
+  late TextEditingController hobbyController;
+
+  late List<TextEditingController> controllers;
+  @override
+  void initState() {
+    super.initState();
+    nameController = TextEditingController();
+    emailController = TextEditingController();
+    passwordController = TextEditingController();
+    hobbyController = TextEditingController();
+    controllers = [
+      nameController,
+      emailController,
+      passwordController,
+      hobbyController,
+    ];
+  }
+
+  @override
+  void dispose() {
+    for (var element in controllers) {
+      element.dispose();
+    }
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

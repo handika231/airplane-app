@@ -16,7 +16,10 @@ import '../page/sign_up_page.dart';
 @MaterialAutoRouter(
   replaceInRouteName: 'Page,Route',
   routes: <AutoRoute>[
-    AutoRoute(page: GetStartedPage, initial: true),
+    AutoRoute(
+      page: GetStartedPage,
+      initial: true,
+    ),
     AutoRoute(page: HomePage),
     AutoRoute(page: SignUpPage),
     AutoRoute(page: BonusPage),

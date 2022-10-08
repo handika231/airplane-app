@@ -11,11 +11,12 @@ final locator = GetIt.instance;
 init() {
   locator.registerLazySingleton<AuthService>(
     () => AuthService(
-      auth: FirebaseAuth.instance,
+      auth: locator(),
       userService: locator(),
     ),
   );
   locator.registerLazySingleton(() => UserService(locator()));
+
   locator.registerLazySingleton(() => FirebaseAuth.instance);
   locator.registerLazySingleton(() => FirebaseFirestore.instance);
   locator.registerLazySingleton(() => AuthCubit(locator()));

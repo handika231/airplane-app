@@ -44,11 +44,9 @@ class AppRouter extends _i10.RootStackRouter {
       );
     },
     SignUpRoute.name: (routeData) {
-      final args = routeData.argsAs<SignUpRouteArgs>(
-          orElse: () => const SignUpRouteArgs());
       return _i10.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: _i3.SignUpPage(key: args.key),
+        child: const _i3.SignUpPage(),
       );
     },
     BonusRoute.name: (routeData) {
@@ -160,26 +158,14 @@ class HomeRoute extends _i10.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i3.SignUpPage]
-class SignUpRoute extends _i10.PageRouteInfo<SignUpRouteArgs> {
-  SignUpRoute({_i11.Key? key})
+class SignUpRoute extends _i10.PageRouteInfo<void> {
+  const SignUpRoute()
       : super(
           SignUpRoute.name,
           path: '/sign-up-page',
-          args: SignUpRouteArgs(key: key),
         );
 
   static const String name = 'SignUpRoute';
-}
-
-class SignUpRouteArgs {
-  const SignUpRouteArgs({this.key});
-
-  final _i11.Key? key;
-
-  @override
-  String toString() {
-    return 'SignUpRouteArgs{key: $key}';
-  }
 }
 
 /// generated route for
