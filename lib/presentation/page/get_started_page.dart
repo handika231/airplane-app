@@ -1,7 +1,9 @@
 import 'package:airplane_app/common/style.dart';
+import 'package:airplane_app/cubit/auth_cubit.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../routes/app_route.gr.dart';
 import '../widgets/custom_button_widget.dart';
@@ -21,6 +23,7 @@ class _GetStartedPageState extends State<GetStartedPage> {
     auth.authStateChanges().listen((event) {
       if (event != null) {
         if (mounted) {
+          context.read<AuthCubit>().getUserById(event.uid);
           context.router.replace(const HomeRoute());
         }
       }

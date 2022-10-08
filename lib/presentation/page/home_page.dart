@@ -1,8 +1,10 @@
 import 'package:airplane_app/common/style.dart';
+import 'package:airplane_app/cubit/auth_cubit.dart';
 import 'package:airplane_app/domain/models/destination_model.dart';
 import 'package:airplane_app/domain/models/popular_content.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../routes/app_route.gr.dart';
 
@@ -26,56 +28,64 @@ class HomePage extends StatelessWidget {
   }
 
   _headerContent(context) {
-    return Container(
-      margin: const EdgeInsets.only(
-        left: 24,
-        right: 24,
-        top: 30,
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Flexible(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+    return BlocBuilder<AuthCubit, AuthState>(
+      builder: (context, state) {
+        if (state is AuthSuccess) {
+          return Container(
+            margin: const EdgeInsets.only(
+              left: 24,
+              right: 24,
+              top: 30,
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
-                  'Howdy,\nKezia Anne',
-                  style: blackTextStyle.copyWith(
-                    fontSize: 24,
-                    fontWeight: semiBold,
+                Flexible(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Howdy,\n${state.user.name}',
+                        style: blackTextStyle.copyWith(
+                          fontSize: 24,
+                          fontWeight: semiBold,
+                        ),
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                      const SizedBox(
+                        height: 6,
+                      ),
+                      Text(
+                        'Where to fly today?',
+                        style: greyTextStyle.copyWith(
+                          fontWeight: light,
+                          fontSize: 16,
+                        ),
+                      )
+                    ],
                   ),
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
                 ),
-                const SizedBox(
-                  height: 6,
-                ),
-                Text(
-                  'Where to fly today?',
-                  style: greyTextStyle.copyWith(
-                    fontWeight: light,
-                    fontSize: 16,
+                Flexible(
+                  child: GestureDetector(
+                    onTap: () {
+                      AutoRouter.of(context).push(const SignOutRoute());
+                    },
+                    child: const CircleAvatar(
+                      radius: 30,
+                      backgroundImage: AssetImage(
+                        'assets/image_profile.png',
+                      ),
+                    ),
                   ),
                 )
               ],
             ),
-          ),
-          Flexible(
-            child: GestureDetector(
-              onTap: () {
-                AutoRouter.of(context).push(const SignOutRoute());
-              },
-              child: const CircleAvatar(
-                radius: 30,
-                backgroundImage: AssetImage(
-                  'assets/image_profile.png',
-                ),
-              ),
-            ),
-          )
-        ],
-      ),
+          );
+        } else {
+          return const SizedBox();
+        }
+      },
     );
   }
 

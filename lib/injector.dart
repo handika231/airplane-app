@@ -15,9 +15,18 @@ init() {
       userService: locator(),
     ),
   );
-  locator.registerLazySingleton(() => UserService(locator()));
+  locator.registerLazySingleton(
+    () => UserService(
+      locator(),
+    ),
+  );
 
   locator.registerLazySingleton(() => FirebaseAuth.instance);
   locator.registerLazySingleton(() => FirebaseFirestore.instance);
-  locator.registerLazySingleton(() => AuthCubit(locator()));
+  locator.registerLazySingleton(
+    () => AuthCubit(
+      authService: locator(),
+      userService: locator(),
+    ),
+  );
 }

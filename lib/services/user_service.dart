@@ -18,4 +18,20 @@ class UserService {
       throw e.toString();
     }
   }
+
+  Future<UserModel> getUserById(String id) async {
+    try {
+      DocumentSnapshot snapshot =
+          await firestore.collection('users').doc(id).get();
+      return UserModel(
+        id: snapshot.id,
+        name: snapshot['name'],
+        email: snapshot['email'],
+        hobby: snapshot['hobby'],
+        balance: snapshot['balance'],
+      );
+    } catch (e) {
+      throw e.toString();
+    }
+  }
 }
