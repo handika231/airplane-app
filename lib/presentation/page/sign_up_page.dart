@@ -65,7 +65,7 @@ class SignUpPage extends StatelessWidget {
                           );
                         } else {
                           AutoRouter.of(context)
-                              .replaceAll([const HomeRoute()]);
+                              .replaceAll([const BonusRoute()]);
                         }
                       },
                       builder: (context, state) {

@@ -7,10 +7,27 @@ import 'package:flutter/material.dart';
 import '../routes/app_route.gr.dart';
 import '../widgets/custom_button_widget.dart';
 
-class GetStartedPage extends StatelessWidget {
-  GetStartedPage({super.key});
+class GetStartedPage extends StatefulWidget {
+  const GetStartedPage({super.key});
+
+  @override
+  State<GetStartedPage> createState() => _GetStartedPageState();
+}
+
+class _GetStartedPageState extends State<GetStartedPage> {
   final FirebaseAuth auth = FirebaseAuth.instance;
+
   final FirebaseFirestore data = FirebaseFirestore.instance;
+
+  @override
+  void initState() {
+    super.initState();
+    auth.authStateChanges().listen((event) {
+      if (event != null) {
+        context.router.replace(const HomeRoute());
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
